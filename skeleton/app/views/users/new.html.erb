@@ -1,0 +1,13 @@
+<h2>This is a User Page</h2>
+
+<form action="<%= users_url %>" method="POST">
+
+    <label>Username:
+        <input type="text" name='user[user_name]' value='<%= @user.user_name %>'>
+    </label>
+    <label>Password:
+        <input type="password" name ='user[password]' value='<%= @user.password %>'>
+    </label>
+
+    <input type="submit" value='Sign Up'>
+</form>
