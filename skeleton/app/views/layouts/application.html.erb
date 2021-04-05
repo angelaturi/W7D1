@@ -9,6 +9,21 @@
   </head>
 
   <body>
+    <%if logged_in?%>
+       <%#sign_up_url = cats_url%>
+       <%#sign_in_url = cats_url%>
+      <h2>Hello, <%=current_user.user_name%></h2>
+      <form action="<%=session_url%>" method="POST">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Logout">
+      </form>
+    <%else%>
+      <%#sign_up_url = new_user_url%>
+      <%#sign_in_url = new_session_url%>
+      <a href="<%=new_user_url%>">Sign up</a>
+      <a href="<%=new_session_url%>">Sign in</a>
+    <%end %>
+    
     <%= yield %>
   </body>
 </html>
