@@ -12,9 +12,9 @@
     </tr>
   <% end %>
 </table>
-
+<%if @cat.owner == current_user%>
 <a href="<%= edit_cat_url(@cat) %>">Edit <%= @cat.name %></a>
-
+<%end%>
 <h2>Rental Requests</h2>
 <table>
   <tr>

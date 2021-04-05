@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-    before_action :require_logged_in, only: [:new, :create]
+    before_action :require_logged_in, only: [:new, :create, :edit, :update]
 
 
   def index
@@ -19,6 +19,7 @@ class CatsController < ApplicationController
 
   def create
     @cat = Cat.new(cat_params)
+    @cat.user_id = current_user.id
     if @cat.save
       redirect_to cat_url(@cat)
     else
@@ -28,12 +29,14 @@ class CatsController < ApplicationController
   end
 
   def edit
-    @cat = Cat.find(params[:id])
+      @cat = current_user.cats.find(params[:id])
+    # @cat = Cat.find(params[:id])
     render :edit
   end
 
   def update
-    @cat = Cat.find(params[:id])
+    @cat = current_user.cats.find(params[:id])
+    # @cat = Cat.find(params[:id])
     if @cat.update_attributes(cat_params)
       redirect_to cat_url(@cat)
     else
